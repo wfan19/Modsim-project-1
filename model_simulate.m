@@ -1,4 +1,4 @@
-function [S, I, R, W] = model_simulate(s_0, i_0, r_0, beta, gamma, alpha, num_steps)
+function [S, I, R, W] = model_simulate(s_0, i_0, r_0, beta, gamma, alpha, lambda, control, num_steps)
 
 % Setup
 S = zeros(1, num_steps);
@@ -17,7 +17,7 @@ R(1) = r;
 
 % Run simulation
 for step = 2 : num_steps
-    [s, i, r] = model_step(s, i, r, beta, gamma, alpha);
+    [s, i, r] = model_step(s, i, r, beta, gamma, alpha, lambda, control);
     S(step) = s;
     I(step) = i;
     R(step) = r;
