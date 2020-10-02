@@ -17,7 +17,7 @@ R(1) = r;
 
 % Run simulation
 for step = 2 : num_steps
-    [s, i, r] = model_step(s, i, r, beta, gamma, alpha, lambda, control(step));
+    [s, i, r] = model_step(s, i, r, beta, gamma, alpha, lambda, control);
     S(step) = s;
     I(step) = i;
     R(step) = r;
