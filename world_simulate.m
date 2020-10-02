@@ -1,7 +1,7 @@
 function [S, I, R, W] = world_simulate(...
     s_0, i_0, r_0, ...
     beta, gamma, alpha, lambda, ...
-    control, delay, num_steps)
+    delay, num_steps)
 
 % Setup
 S = zeros(1, num_steps);
@@ -20,7 +20,17 @@ R(1) = r;
 
 % Run simulation
 for step = 2 : num_steps
-    [s, i, r] = model_step(s, i, r, beta, gamma, alpha, lambda, control);
+    
+    control = 0;
+    % control = controller(s, i, r, beta, gamma, alpha, lambda, threshold)
+    control_queue = [control_queue, control];
+    
+    current_control = 0;
+    if(step - delay > 1)
+        current_control = control_queue(current_control);
+    end
+    
+    [s, i, r] = model_step(s, i, r, beta, gamma, alpha, lambda, current_control);
     S(step) = s;
     I(step) = i;
     R(step) = r;
