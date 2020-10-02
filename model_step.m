@@ -1,7 +1,7 @@
-function [s_n, i_n, r_n] = model_step(s, i, r, beta, gamma, alpha)
+function [s_n, i_n, r_n] = model_step(s, i, r, beta, gamma, alpha, lambda, control)
 
 susceptible = alpha * r;
-infected = beta * i * s;
+infected = (beta - beta*lambda*control) * i * s;
 recovered = gamma * i;
     
 % Update state
