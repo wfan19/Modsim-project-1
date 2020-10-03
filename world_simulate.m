@@ -22,10 +22,10 @@ control_queue = [];
 % Run simulation
 for step = 2 : num_steps
     control_val = sir_controller(s, i, r, beta, gamma, alpha, lambda, threshold, horizon);
-    disp(control_val);
+    % disp(control_val);
     control_queue = [control_queue, control_val];
     
-    if(step - delay < 1)
+    if(step - delay < 1 || step - delay > length(control_queue))
         current_control = control_queue(1);
     else
         current_control = control_queue(step - delay);
