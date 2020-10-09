@@ -18,7 +18,7 @@ S(1) = s;
 I(1) = i;
 R(1) = r;
 
-control_queue = [];
+control_queue = [0];
 % Run simulation
 for step = 2 : num_steps
     control_val = sir_controller(s, i, r, beta, gamma, alpha, lambda, threshold, horizon);
